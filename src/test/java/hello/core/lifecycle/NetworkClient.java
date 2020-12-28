@@ -1,4 +1,10 @@
-package lifecycle;
+package hello.core.lifecycle;
+
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 public class NetworkClient {
     private String url;
@@ -6,8 +12,8 @@ public class NetworkClient {
     public NetworkClient()
     {
         System.out.println("생성자 호출 = " + url);
-        connect();
-        call("초기 연결 메시지");
+//        connect();
+//        call("초기 연결 메시지");
     }
 
     public void setUrl(String url) {
@@ -24,5 +30,14 @@ public class NetworkClient {
     public void disConnect()
     {
         System.out.println("close : "+url);
+    }
+    @PostConstruct
+    public void init() {
+        connect();
+        call("초기 연결 메시지");
+    }
+    @PreDestroy
+    public void destroy() {
+        disConnect();
     }
 }

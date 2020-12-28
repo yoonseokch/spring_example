@@ -1,6 +1,5 @@
 package hello.core.annotation;
 
-import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.lang.annotation.*;
